@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import {DropdownModule} from "ngx-dropdown";
+
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
@@ -18,7 +18,10 @@ import { TestErrorComponent } from './errors/test-error/test-error.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
-
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     MessagesComponent,
     TestErrorComponent,
     NotFoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    MemberCardComponent
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -42,12 +47,16 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    DropdownModule
+    TabsModule.forRoot(),
+    NgxGalleryModule
+    
+    
     
     
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide:HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide:HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

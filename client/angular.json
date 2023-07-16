@@ -15,7 +15,7 @@
           "options": {
             "allowedCommonJsDependencies": [
               "lodash"
-           ],
+            ],
             "outputPath": "dist/client",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -26,11 +26,12 @@
               "src/assets"
             ],
             "styles": [
+         
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootswatch/dist/united/bootstrap.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "node_modules/ngx-bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/css/font-awesome.min.css",            
+           
+              "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.css"
             ],
             "scripts": []
