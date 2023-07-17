@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,11 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ToastrModule } from 'ngx-toastr';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoadinInterceptor } from './_interceptor/loadin.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,8 +41,9 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     TestErrorComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    MemberCardComponent
-    
+    MemberCardComponent,
+    MemberEditComponent
+
   ],
   imports: [
     BrowserAnimationsModule,
@@ -48,15 +53,19 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     BrowserAnimationsModule,
     FormsModule,
     TabsModule.forRoot(),
-    NgxGalleryModule
-    
-    
-    
-    
+    NgxGalleryModule,
+    BsDropdownModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
+    NgxSpinnerModule.forRoot({
+      type: 'line-scale-party'
+    })
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide:HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadinInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
