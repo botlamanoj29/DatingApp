@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
@@ -27,6 +27,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadinInterceptor } from './_interceptor/loadin.interceptor';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { DataPickerComponent } from './_forms/data-picker/data-picker.component';
+import { DatePickerComponent } from './_forms/date-picker/date-picker.component'
+// import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -42,9 +48,14 @@ import { LoadinInterceptor } from './_interceptor/loadin.interceptor';
     NotFoundComponent,
     ServerErrorComponent,
     MemberCardComponent,
-    MemberEditComponent
+    MemberEditComponent,
+    PhotoEditorComponent,
+    TextInputComponent,
+    DataPickerComponent,
+    DatePickerComponent
 
   ],
+
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -52,6 +63,7 @@ import { LoadinInterceptor } from './_interceptor/loadin.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     TabsModule.forRoot(),
     NgxGalleryModule,
     BsDropdownModule.forRoot(),
@@ -60,7 +72,8 @@ import { LoadinInterceptor } from './_interceptor/loadin.interceptor';
     }),
     NgxSpinnerModule.forRoot({
       type: 'line-scale-party'
-    })
+    }), BsDatepickerModule.forRoot()
+    // FileUploadModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
